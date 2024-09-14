@@ -22,6 +22,9 @@ class FormGeneratorWidget extends StatelessWidget {
                       'input' => TextFieldGenerator(
                           item: e,
                         ),
+                      'textarea' => TextFieldGenerator(
+                          item: e,
+                        ),
                       'select' => (e.props?.options ?? []).isNotEmpty
                           ? DropDownGenerator(
                               item: e,
