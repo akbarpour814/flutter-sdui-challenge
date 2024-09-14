@@ -21,6 +21,7 @@ dependencies:
   provider: 
   permission_handler:
   cupertino_icons:
+  persian_number_utility:
 
 dev_dependencies:
   flutter_test:
