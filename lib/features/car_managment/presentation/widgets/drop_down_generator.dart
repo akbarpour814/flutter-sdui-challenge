@@ -48,7 +48,7 @@ class _DropDownGeneratorState extends State<DropDownGenerator> {
                 contentPadding: EdgeInsets.all(double.parse(
                     (widget.item.style?.padding ?? '8').replaceAll('px', '')))),
             validator: (value) =>
-                dropdownValidator(value, widget.item.label ?? ''),
+                dropdownValidator(value, (widget.item.label ?? '').replaceAll(':', '')),
           ),
         ));
   }

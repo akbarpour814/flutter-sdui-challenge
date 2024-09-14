@@ -24,8 +24,8 @@ class TextFieldGenerator extends StatelessWidget {
             ? typeInputFormatters(TypeEnum.digit)
             : null,
         controller: item.controller,
-        maxLines: item.props?.rows != null ? item.props!.rows! : null,
-        minLines: item.props?.rows != null ? item.props!.rows! : null,
+        maxLines: item.props?.rows != null ? item.props!.rows! : 1,
+        minLines: item.props?.rows != null ? item.props!.rows! : 1,
         decoration: InputDecoration(
             labelText: item.label,
             hintText: item.props?.placeholder ?? 'مقدار را وارد نمایید',
@@ -41,7 +41,8 @@ class TextFieldGenerator extends StatelessWidget {
                     (item.style?.borderRadius ?? '8').replaceAll('px', '')))),
             contentPadding: EdgeInsets.all(double.parse(
                 (item.style?.padding ?? '8').replaceAll('px', '')))),
-        validator: (value) => generalValidator(value, item.label ?? ''),
+        validator: (value) =>
+            generalValidator(value, (item.label ?? '').replaceAll(':', '')),
       ),
     );
   }

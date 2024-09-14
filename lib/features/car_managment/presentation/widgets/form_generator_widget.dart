@@ -5,7 +5,7 @@ import 'package:flutter_sdui_challenge/features/car_managment/presentation/widge
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/image_picker_generator.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/text_field_generator.dart';
 
-class FormGeneratorWidget extends StatelessWidget {
+class FormGeneratorWidget extends StatefulWidget {
   final FormFieldsResponseModel formFields;
   const FormGeneratorWidget({
     super.key,
@@ -13,12 +13,20 @@ class FormGeneratorWidget extends StatelessWidget {
   });
 
   @override
+  State<FormGeneratorWidget> createState() => _FormGeneratorWidgetState();
+}
+
+class _FormGeneratorWidgetState extends State<FormGeneratorWidget> {
+  ScrollController _scrollController = ScrollController();
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.all(16),
-            children: formFields.fields!
+            controller: _scrollController,
+            children: widget.formFields.fields!
                 .map((e) => switch (e.type) {
                       'input' => TextFieldGenerator(
                           item: e,
@@ -31,7 +39,10 @@ class FormGeneratorWidget extends StatelessWidget {
                               item: e,
                             )
                           : const Center(),
-                      'file' => ImagePickerGenerator(item: e),
+                      'file' => ImagePickerGenerator(
+                          item: e,
+                          scrollController: _scrollController,
+                        ),
                       String() => Center(),
                       // TODO: Handle this case.
                       null => Center(),

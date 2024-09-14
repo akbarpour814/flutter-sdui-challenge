@@ -8,9 +8,11 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagePickerGenerator extends StatefulWidget {
   final FieldModel item;
+  final ScrollController scrollController;
   const ImagePickerGenerator({
     super.key,
     required this.item,
+    required this.scrollController,
   });
 
   @override
@@ -55,6 +57,11 @@ class _ImagePickerGeneratorState extends State<ImagePickerGenerator> {
                   }
                 }
                 setState(() {});
+                Future.delayed(const Duration(milliseconds: 500)).then(
+                    (value) => widget.scrollController.animateTo(
+                        widget.scrollController.position.maxScrollExtent,
+                        duration: const Duration(milliseconds: 250),
+                        curve: Curves.ease));
               },
               icon: Icon(
                 Icons.add_photo_alternate_outlined,
@@ -86,7 +93,11 @@ class _ImagePickerGeneratorState extends State<ImagePickerGenerator> {
                             height: 30.w(context),
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Theme.of(context).primaryColor),
+                                    width: 2,
+                                    color: (5 * 1024 * 1024) >=
+                                            File(e.path).lengthSync()
+                                        ? Theme.of(context).primaryColor
+                                        : Colors.red),
                                 borderRadius: BorderRadius.circular(6),
                                 image: DecorationImage(
                                     image: FileImage(File(e.path)),
