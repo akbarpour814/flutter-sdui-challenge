@@ -53,4 +53,14 @@ class CarManagementRepository implements ICarManagementRepository {
       return DataError(e.toString());
     }
   }
+
+  @override
+  Future<DataState<List<List<CarAttributeModel>>>> getAllCars() async {
+    try {
+      final res = await getIt<ICarManagementLocalDataSource>().getAllCars();
+      return DataSuccess(res);
+    } catch (e) {
+      return DataError(e.toString());
+    }
+  }
 }

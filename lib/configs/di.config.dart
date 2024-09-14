@@ -13,6 +13,8 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../features/car_managment/data/repository/car_management_repository_impl.dart'
     as _i916;
+import '../features/car_managment/data/source/local/car_management_local_data_source.dart'
+    as _i819;
 import '../features/car_managment/data/source/remote/car_management_remote_data_source.dart'
     as _i215;
 import '../features/car_managment/domain/repository/car_management_repository.dart'
@@ -33,6 +35,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i215.CarManagementRemoteDataSource());
     gh.factory<_i326.ICarManagementRepository>(
         () => _i916.CarManagementRepository());
+    gh.factory<_i819.ICarManagementLocalDataSource>(
+        () => _i819.CarManagementLocalDataSource());
     return this;
   }
 }

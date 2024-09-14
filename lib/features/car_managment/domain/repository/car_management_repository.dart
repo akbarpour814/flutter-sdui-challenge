@@ -6,4 +6,5 @@ abstract class ICarManagementRepository {
   Future<DataState<FormFieldsResponseModel>> getFormFields();
   Future<DataState> addNewCar(List<CarAttributeModel> request);
   Future<DataState> deleteCar(int id);
+  Future<DataState<List<List<CarAttributeModel>>>> getAllCars();
 }
