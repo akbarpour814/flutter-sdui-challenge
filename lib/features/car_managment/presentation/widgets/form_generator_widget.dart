@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/data/models/form_fields_response_model/form_fields_response_model.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/drop_down_generator.dart';
+import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/image_picker_generator.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/text_field_generator.dart';
 
 class FormGeneratorWidget extends StatelessWidget {
@@ -30,6 +31,7 @@ class FormGeneratorWidget extends StatelessWidget {
                               item: e,
                             )
                           : const Center(),
+                      'file' => ImagePickerGenerator(item: e),
                       String() => Center(),
                       // TODO: Handle this case.
                       null => Center(),

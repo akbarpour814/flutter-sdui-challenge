@@ -23,6 +23,7 @@ dependencies:
   cupertino_icons:
   persian_number_utility:
   dio:
+  image_picker:
 
 dev_dependencies:
   flutter_test:

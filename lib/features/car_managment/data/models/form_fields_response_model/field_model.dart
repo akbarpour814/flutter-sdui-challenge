@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/data/models/form_fields_response_model/options_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'props_model.dart';
 import 'style_model.dart';
@@ -12,6 +13,7 @@ class FieldModel {
   String? type;
   OptionsModel? selectedOptions;
   TextEditingController controller = TextEditingController();
+  List<XFile>? selectedFiles;
 
   FieldModel({this.label, this.name, this.props, this.style, this.type});
 

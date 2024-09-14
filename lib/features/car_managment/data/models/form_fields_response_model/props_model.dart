@@ -7,6 +7,8 @@ class PropsModel {
   String? type;
   List<OptionsModel>? options;
   int? rows;
+  bool? multiple;
+  String? maxSize;
 
   PropsModel(
       {this.color,
@@ -14,13 +16,17 @@ class PropsModel {
       this.size,
       this.type,
       this.options,
-      this.rows});
+      this.rows,
+      this.maxSize,
+      this.multiple});
 
   factory PropsModel.fromJson(Map<String, dynamic> json) => PropsModel(
       color: json['color'] as String?,
       placeholder: json['placeholder'] as String?,
       size: json['size'] as String?,
       type: json['type'] as String?,
+      maxSize: json['maxSize'] as String?,
+      multiple: json['multiple'] as bool?,
       rows: json['rows'] as int?,
       options: (json['options'] as List<dynamic>?)
           ?.map((e) => OptionsModel.fromJson(e as Map<String, dynamic>))
@@ -32,6 +38,8 @@ class PropsModel {
         'size': size,
         'type': type,
         'rows': rows,
+        'maxSize': maxSize,
+        'multiple': multiple,
         'options': options?.map((e) => e.toJson())
       };
 }
