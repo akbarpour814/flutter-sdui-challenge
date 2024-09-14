@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_sdui_challenge/features/car_managment/data/models/form_fields_response_model/options_model.dart';
+
 import 'props_model.dart';
 import 'style_model.dart';
 
@@ -7,6 +10,8 @@ class FieldModel {
   PropsModel? props;
   StyleModel? style;
   String? type;
+  OptionsModel? selectedOptions;
+  TextEditingController controller = TextEditingController();
 
   FieldModel({this.label, this.name, this.props, this.style, this.type});
 

@@ -20,23 +20,22 @@ class AddCarScreen extends StatelessWidget {
         child: BlocBuilder<GetFormFieldsBloc, GetFormFieldsState>(
           builder: (context, getFormFieldsState) {
             return switch (getFormFieldsState) {
-              GetFormFieldsLoaded() => (getFormFieldsState.formFields.fields ??
-                          [])
-                      .isNotEmpty
-                  ? Column(
-                      children: [
-                        FormGeneratorWidget(
-                          formFields: getFormFieldsState.formFields,
-                        ),
-                      ],
-                    )
-                  : RetryBtn(
-                      errorMessage: 'خطا در پردازش فرم',
-                      onRetry: () {
-                        BlocProvider.of<GetFormFieldsBloc>(context)
-                            .add(GetFormFieldsRequestEvent());
-                      },
-                    ),
+              GetFormFieldsLoaded() =>
+                (getFormFieldsState.formFields.fields ?? []).isNotEmpty
+                    ? Column(
+                        children: [
+                          FormGeneratorWidget(
+                            formFields: getFormFieldsState.formFields,
+                          ),
+                        ],
+                      )
+                    : RetryBtn(
+                        errorMessage: 'خطا در پردازش فرم',
+                        onRetry: () {
+                          BlocProvider.of<GetFormFieldsBloc>(context)
+                              .add(GetFormFieldsRequestEvent());
+                        },
+                      ),
               GetFormFieldsError() => RetryBtn(
                   errorMessage: getFormFieldsState.message,
                   onRetry: () {
@@ -57,4 +56,3 @@ class AddCarScreen extends StatelessWidget {
     );
   }
 }
-

@@ -18,11 +18,11 @@ ThemeData themeConfig(BuildContext context) {
         style: ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(Theme.of(context).primaryColor),
     )),
-    inputDecorationTheme:
-        InputDecorationTheme(filled: true, border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(8)
-        )),
+    inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(8))),
     useMaterial3: true,
   );
 }

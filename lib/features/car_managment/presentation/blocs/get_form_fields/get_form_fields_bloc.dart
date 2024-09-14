@@ -14,7 +14,7 @@ class GetFormFieldsBloc extends Bloc<GetFormFieldsEvent, GetFormFieldsState> {
       final state = await GetFormFieldsUseCase().call();
       if (state is DataSuccess) {
         emit(GetFormFieldsLoaded(formFields: state.data!));
-      }else{
+      } else {
         emit(GetFormFieldsError(message: state.error!));
       }
     });
