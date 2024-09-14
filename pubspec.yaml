@@ -22,6 +22,7 @@ dependencies:
   permission_handler:
   cupertino_icons:
   persian_number_utility:
+  dio:
 
 dev_dependencies:
   flutter_test:

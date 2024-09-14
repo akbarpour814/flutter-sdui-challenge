@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sdui_challenge/configs/di.dart';
+import 'package:flutter_sdui_challenge/configs/theme_config.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/screens/car_list_screen.dart';
 
 Future<void> main() async {
@@ -15,11 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'flutter-sdui-challenge',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const CarListScreen(),
+      theme: themeConfig(context),
+      home: const Directionality(
+          textDirection: TextDirection.rtl, child: CarListScreen()),
     );
   }
 }
