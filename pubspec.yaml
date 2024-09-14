@@ -10,14 +10,39 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.8
+  top_snackbar_flutter:
+  flutter_bloc:
+  bloc:
+  get_it:
+  injectable: 
+  flutter_svg:
+  hive:
+  hive_flutter:
+  provider: 
+  permission_handler:
+  cupertino_icons:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: 
+  flutter_gen_runner:
+  build_runner: 
+  injectable_generator:
+  hive_generator:
 
-  flutter_lints: ^4.0.0
+flutter_gen:
+  output: lib/configs/gen
+  integrations:
+    flutter_svg: true
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/resource/
+    - assets/font/
+
+  fonts:
+    - family: iranSans
+      fonts:
+        - asset: assets/font/iran-sans.ttf

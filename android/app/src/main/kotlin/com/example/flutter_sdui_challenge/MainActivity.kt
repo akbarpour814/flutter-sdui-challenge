@@ -1,4 +1,4 @@
-package com.example.flutter_sdui_challenge
+package com.app.flutter_sdui_challenge
 
 import io.flutter.embedding.android.FlutterActivity
 
