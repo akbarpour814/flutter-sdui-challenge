@@ -14,6 +14,10 @@ ThemeData themeConfig(BuildContext context) {
           fontWeight: FontWeight.bold,
           fontFamily: FontFamily.iranSans,
         )),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll(Theme.of(context).primaryColor),
+    )),
     useMaterial3: true,
   );
 }
