@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/blocs/get_cars/get_cars_bloc.dart';
-import 'package:flutter_sdui_challenge/features/car_management/presentation/blocs/delete_car/delete_car_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/screens/add_car_screen.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/widgets/car_item.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/widgets/data_empty_widget.dart';
@@ -16,15 +15,14 @@ class CarListScreen extends StatefulWidget {
 }
 
 class _CarListScreenState extends State<CarListScreen> {
+  ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => GetCarsBloc()..add(GetCarsRequestEvent()),
-        ),
-        BlocProvider(
-          create: (context) => DeleteCarBloc(),
         ),
       ],
       child: Scaffold(
@@ -45,6 +43,10 @@ class _CarListScreenState extends State<CarListScreen> {
                             Navigator.pop(ctx);
                             BlocProvider.of<GetCarsBloc>(context)
                                 .add(GetCarsRequestEvent());
+                            _scrollController.animateTo(
+                                _scrollController.position.minScrollExtent,
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.ease);
                           },
                         )),
                   ));
@@ -60,11 +62,20 @@ class _CarListScreenState extends State<CarListScreen> {
             return switch (getCarsState) {
               GetCarsLoaded() => getCarsState.data.isNotEmpty
                   ? ListView(
+                      controller: _scrollController,
                       physics: const BouncingScrollPhysics(),
                       cacheExtent: 1000,
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 80),
                       children: getCarsState.data.reversed
-                          .map((e) => CarItem(car: e))
+                          .map((e) => CarItem(
+                                car: e,
+                                onDeleteItem: () {
+                                  setState(() {
+                                    getCarsState.data.removeWhere(
+                                        (element) => element.id == e.id);
+                                  });
+                                },
+                              ))
                           .toList())
                   : DataEmptyWidget(
                       onCreate: () {
@@ -78,6 +89,12 @@ class _CarListScreenState extends State<CarListScreen> {
                                       Navigator.pop(ctx);
                                       BlocProvider.of<GetCarsBloc>(context)
                                           .add(GetCarsRequestEvent());
+                                      _scrollController.animateTo(
+                                          _scrollController
+                                              .position.minScrollExtent,
+                                          duration:
+                                              const Duration(milliseconds: 250),
+                                          curve: Curves.ease);
                                     },
                                   )),
                             ));

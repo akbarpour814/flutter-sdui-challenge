@@ -5,7 +5,11 @@ sealed class DeleteCarState {}
 
 final class DeleteCarInitial extends DeleteCarState {}
 
-final class DeleteCarLoading extends DeleteCarState {}
+final class DeleteCarLoading extends DeleteCarState {
+  final int id;
+
+  DeleteCarLoading({required this.id});
+}
 
 final class DeleteCarSuccess extends DeleteCarState {}
 

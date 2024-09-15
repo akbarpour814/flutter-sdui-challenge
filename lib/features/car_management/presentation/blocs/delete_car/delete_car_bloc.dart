@@ -9,7 +9,7 @@ part 'delete_car_state.dart';
 class DeleteCarBloc extends Bloc<DeleteCarEvent, DeleteCarState> {
   DeleteCarBloc() : super(DeleteCarInitial()) {
     on<DeleteCarRequestEvent>((event, emit) async {
-      emit(DeleteCarLoading());
+      emit(DeleteCarLoading(id: event.id));
       final state = await DeleteCarUseCase().call(event.id);
       if (state is DataSuccess) {
         emit(DeleteCarSuccess());
