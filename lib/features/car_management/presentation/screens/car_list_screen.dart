@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_sdui_challenge/features/car_management/presentation/blocs/bloc/get_cars_bloc.dart';
+import 'package:flutter_sdui_challenge/features/car_management/presentation/blocs/get_cars/get_cars_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/blocs/delete_car/delete_car_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/screens/add_car_screen.dart';
 import 'package:flutter_sdui_challenge/features/car_management/presentation/widgets/car_item.dart';
@@ -64,7 +64,7 @@ class _CarListScreenState extends State<CarListScreen> {
                       cacheExtent: 1000,
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 80),
                       children: getCarsState.data.reversed
-                          .map((e) => CarItem(attrs: e))
+                          .map((e) => CarItem(car: e))
                           .toList())
                   : DataEmptyWidget(
                       onCreate: () {

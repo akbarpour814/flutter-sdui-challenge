@@ -8,7 +8,7 @@ final class GetCarsInitial extends GetCarsState {}
 final class GetCarsLoading extends GetCarsState {}
 
 final class GetCarsLoaded extends GetCarsState {
-  final List<List<CarAttributeModel>> data;
+  final List<GetCarsResponseModel> data;
 
   GetCarsLoaded({required this.data});
 }

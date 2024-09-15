@@ -4,6 +4,7 @@ import 'package:flutter_sdui_challenge/configs/di.dart';
 import 'package:flutter_sdui_challenge/core/utils/data_states.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/models/car_attribute_model.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/models/form_fields_response_model/form_fields_response_model.dart';
+import 'package:flutter_sdui_challenge/features/car_management/data/models/get_cars_response_model.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/source/local/car_management_local_data_source.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/source/remote/car_management_remote_data_source.dart';
 import 'package:flutter_sdui_challenge/features/car_management/domain/repository/car_management_repository.dart';
@@ -62,7 +63,7 @@ class CarManagementRepository implements ICarManagementRepository {
   }
 
   @override
-  Future<DataState<List<List<CarAttributeModel>>>> getAllCars() async {
+  Future<DataState<List<GetCarsResponseModel>>> getAllCars() async {
     try {
       final res = await getIt<ICarManagementLocalDataSource>().getAllCars();
       return DataSuccess(res);

@@ -5,6 +5,7 @@ part 'car_attribute_model.g.dart';
 
 @HiveType(typeId: 0)
 class CarAttributeModel {
+  int? id;
   @HiveField(0)
   final String? attrName;
   @HiveField(1)
@@ -14,9 +15,11 @@ class CarAttributeModel {
   @HiveField(3)
   List<Uint8List>? fileBytes;
 
-  CarAttributeModel(
-      {required this.attrName,
-      required this.attrLabel,
-      required this.attrValue,
-      required this.fileBytes,});
+  CarAttributeModel({
+    this.id,
+    required this.attrName,
+    required this.attrLabel,
+    required this.attrValue,
+    required this.fileBytes,
+  });
 }

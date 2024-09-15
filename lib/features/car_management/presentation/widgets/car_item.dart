@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sdui_challenge/features/car_management/data/models/car_attribute_model.dart';
 import 'package:flutter_sdui_challenge/core/utils/extentions.dart';
+import 'package:flutter_sdui_challenge/features/car_management/data/models/get_cars_response_model.dart';
 
 class CarItem extends StatelessWidget {
-  final List<CarAttributeModel> attrs;
-  const CarItem({super.key, required this.attrs});
+  final GetCarsResponseModel car;
+  const CarItem({super.key, required this.car});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,17 @@ class CarItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          if (attrs.any((element) => element.attrValue.isNotNullOrEmpty))
-            ...attrs.where((element) => element.attrValue.isNotNullOrEmpty).map(
+          if (car.data.any((element) => element.attrValue.isNotNullOrEmpty))
+            ...car.data
+                .where((element) => element.attrValue.isNotNullOrEmpty)
+                .map(
                   (e) => _rowItem(
                     title: e.attrLabel ?? '',
                     value: e.attrValue ?? '',
                   ),
                 ),
-          if (attrs.any((element) => (element.fileBytes ?? []).isNotEmpty))
-            ...attrs
+          if (car.data.any((element) => (element.fileBytes ?? []).isNotEmpty))
+            ...car.data
                 .where((element) => (element.fileBytes ?? []).isNotEmpty)
                 .map((e) => Column(
                       children: [

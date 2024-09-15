@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_sdui_challenge/core/utils/data_states.dart';
-import 'package:flutter_sdui_challenge/features/car_management/data/models/car_attribute_model.dart';
+import 'package:flutter_sdui_challenge/features/car_management/data/models/get_cars_response_model.dart';
 import 'package:flutter_sdui_challenge/features/car_management/domain/use_cases/get_all_cars_use_case.dart';
 import 'package:meta/meta.dart';
 
