@@ -24,6 +24,7 @@ dependencies:
   persian_number_utility:
   dio:
   image_picker:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +34,9 @@ dev_dependencies:
   build_runner: 
   injectable_generator:
   hive_generator:
+  mockito:
+  test_widgets_with_size:
+  bloc_test:
 
 flutter_gen:
   output: lib/configs/gen

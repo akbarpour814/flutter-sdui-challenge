@@ -31,12 +31,12 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i848.ICarManagementRepository>(
-        () => _i737.CarManagementRepository());
     gh.factory<_i613.ICarManagementLocalDataSource>(
         () => _i613.CarManagementLocalDataSource());
     gh.factory<_i805.ICarManagementRemoteDataSource>(
         () => _i805.CarManagementRemoteDataSource());
+    gh.factory<_i848.ICarManagementRepository>(
+        () => _i737.CarManagementRepositoryImpl());
     return this;
   }
 }

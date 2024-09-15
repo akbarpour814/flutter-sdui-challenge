@@ -15,7 +15,7 @@ Response<dynamic>? _getFormFieldsRes;
 @Injectable(
   as: ICarManagementRepository,
 )
-class CarManagementRepository implements ICarManagementRepository {
+class CarManagementRepositoryImpl implements ICarManagementRepository {
   @override
   Future<DataState<FormFieldsResponseModel>> getFormFields() async {
     try {
@@ -37,31 +37,33 @@ class CarManagementRepository implements ICarManagementRepository {
     }
   }
 
-
   Map<String, dynamic> _extractJsonFromHtml(Response<dynamic> res) {
-   try {
-    // Step 1: Extract the JSON-like part of the response using regex.
-    const String pattern = r'"fields":.*?\}\]}'; // Regex pattern to extract the fields object
-    final RegExp regex = RegExp(pattern);
-    final Match? match = regex.firstMatch(res.data);
+    try {
+      // Step 1: Extract the JSON-like part of the response using regex.
+      const String pattern =
+          r'"fields":.*?\}\]}'; // Regex pattern to extract the fields object
+      final RegExp regex = RegExp(pattern);
+      final Match? match = regex.firstMatch(res.data);
 
-    if (match == null) {
-      throw const FormatException('Could not extract valid JSON from the response.');
+      if (match == null) {
+        throw const FormatException(
+            'Could not extract valid JSON from the response.');
+      }
+
+      // Step 2: Clean up the extracted string, replacing HTML entities with proper characters.
+      String extractedJson = match
+          .group(0)!
+          .replaceAll('&quot;', '"') // Convert &quot; to "
+          .replaceAll('"{', '{') // Fix any wrapping quotes around object start
+          .replaceAll('}"', '}'); // Fix any wrapping quotes around object end
+
+      // Step 3: Parse the cleaned JSON string.
+      return jsonDecode('{"fields": $extractedJson}');
+    } catch (e) {
+      // Handle parsing errors or other issues gracefully.
+      print('Error parsing JSON: $e');
+      return {};
     }
-
-    // Step 2: Clean up the extracted string, replacing HTML entities with proper characters.
-    String extractedJson = match.group(0)!
-        .replaceAll('&quot;', '"') // Convert &quot; to "
-        .replaceAll('"{', '{') // Fix any wrapping quotes around object start
-        .replaceAll('}"', '}'); // Fix any wrapping quotes around object end
-
-    // Step 3: Parse the cleaned JSON string.
-    return jsonDecode('{"fields": $extractedJson}');
-  } catch (e) {
-    // Handle parsing errors or other issues gracefully.
-    print('Error parsing JSON: $e');
-    return {};
-  }
   }
 
   @override

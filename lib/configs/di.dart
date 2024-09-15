@@ -16,7 +16,7 @@ final getIt = GetIt.instance;
 )
 Future<void> configureDependencies() async {
   getIt.registerSingleton<Dio>(
-    createApiClient(),
+    createApiClient()
   );
   getIt.init();
   await initializeHive();
