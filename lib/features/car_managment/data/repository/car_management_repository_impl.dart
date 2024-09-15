@@ -9,6 +9,8 @@ import 'package:flutter_sdui_challenge/features/car_managment/data/source/remote
 import 'package:flutter_sdui_challenge/features/car_managment/domain/repository/car_management_repository.dart';
 import 'package:injectable/injectable.dart';
 
+Response<dynamic>? _getFormFieldsRes;
+
 @Injectable(
   as: ICarManagementRepository,
 )
@@ -16,10 +18,15 @@ class CarManagementRepository implements ICarManagementRepository {
   @override
   Future<DataState<FormFieldsResponseModel>> getFormFields() async {
     try {
-      final res = await getIt<ICarManagementRemoteDataSource>().getFormFields();
-      if (res.statusCode == 200) {
-        return DataSuccess(
-            FormFieldsResponseModel.fromJson(_extractJsonFromHtml(res)));
+      if (_getFormFieldsRes != null && _getFormFieldsRes!.statusCode == 200) {
+        return DataSuccess(FormFieldsResponseModel.fromJson(
+            _extractJsonFromHtml(_getFormFieldsRes!)));
+      }
+      _getFormFieldsRes =
+          await getIt<ICarManagementRemoteDataSource>().getFormFields();
+      if (_getFormFieldsRes != null && _getFormFieldsRes!.statusCode == 200) {
+        return DataSuccess(FormFieldsResponseModel.fromJson(
+            _extractJsonFromHtml(_getFormFieldsRes!)));
       }
       return DataError('خطا در دریافت اطلاعات');
     } catch (e) {

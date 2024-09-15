@@ -21,7 +21,6 @@ Future<void> configureDependencies() async {
   getIt.init();
   await initializeHive();
   Hive.registerAdapter(CarAttributeModelAdapter());
-  // Hive.deleteBoxFromDisk('carBox');
 }
 
 Dio createApiClient() {
