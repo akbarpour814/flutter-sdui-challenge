@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sdui_challenge/configs/di.dart';
 import 'package:flutter_sdui_challenge/configs/theme_config.dart';
-import 'package:flutter_sdui_challenge/features/car_managment/presentation/screens/car_list_screen.dart';
+import 'package:flutter_sdui_challenge/features/car_management/presentation/screens/car_list_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

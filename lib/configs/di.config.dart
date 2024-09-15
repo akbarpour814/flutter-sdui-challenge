@@ -11,14 +11,14 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../features/car_managment/data/repository/car_management_repository_impl.dart'
-    as _i916;
-import '../features/car_managment/data/source/local/car_management_local_data_source.dart'
-    as _i819;
-import '../features/car_managment/data/source/remote/car_management_remote_data_source.dart'
-    as _i215;
-import '../features/car_managment/domain/repository/car_management_repository.dart'
-    as _i326;
+import '../features/car_management/data/repository/car_management_repository_impl.dart'
+    as _i737;
+import '../features/car_management/data/source/local/car_management_local_data_source.dart'
+    as _i613;
+import '../features/car_management/data/source/remote/car_management_remote_data_source.dart'
+    as _i805;
+import '../features/car_management/domain/repository/car_management_repository.dart'
+    as _i848;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,12 +31,12 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i215.ICarManagementRemoteDataSource>(
-        () => _i215.CarManagementRemoteDataSource());
-    gh.factory<_i326.ICarManagementRepository>(
-        () => _i916.CarManagementRepository());
-    gh.factory<_i819.ICarManagementLocalDataSource>(
-        () => _i819.CarManagementLocalDataSource());
+    gh.factory<_i848.ICarManagementRepository>(
+        () => _i737.CarManagementRepository());
+    gh.factory<_i613.ICarManagementLocalDataSource>(
+        () => _i613.CarManagementLocalDataSource());
+    gh.factory<_i805.ICarManagementRemoteDataSource>(
+        () => _i805.CarManagementRemoteDataSource());
     return this;
   }
 }
