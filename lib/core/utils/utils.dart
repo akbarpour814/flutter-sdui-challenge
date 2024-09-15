@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_sdui_challenge/core/utils/const.dart';
+import 'package:flutter_sdui_challenge/core/utils/enums.dart';
 
 List<TextInputFormatter>? typeInputFormatters(TypeEnum type) {
   if (type == TypeEnum.loginCode) {

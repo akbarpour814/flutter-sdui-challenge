@@ -24,6 +24,7 @@ class CarItem extends StatelessWidget {
         ),
         child: Column(
           children: [
+            // all attrs without file type
             if (car.data.any((element) => element.attrValue.isNotNullOrEmpty))
               ...car.data
                   .where((element) => element.attrValue.isNotNullOrEmpty)
@@ -33,6 +34,7 @@ class CarItem extends StatelessWidget {
                       value: e.attrValue ?? '',
                     ),
                   ),
+            // file type attrs
             if (car.data.any((element) => (element.fileBytes ?? []).isNotEmpty))
               ...car.data
                   .where((element) => (element.fileBytes ?? []).isNotEmpty)

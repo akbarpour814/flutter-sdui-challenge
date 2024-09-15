@@ -42,6 +42,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
           child: BlocBuilder<GetFormFieldsBloc, GetFormFieldsState>(
             builder: (context, getFormFieldsState) {
               return switch (getFormFieldsState) {
+                //when data loaded
                 GetFormFieldsLoaded() => (getFormFieldsState
                                 .formFields.fields ??
                             [])
@@ -78,6 +79,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                                               _checkFileValidation(
                                                   getFormFieldsState);
                                           if (fileErrorMsg == null) {
+                                            // create request
                                             List<CarAttributeModel>
                                                 requestList = [];
                                             for (var element
@@ -140,6 +142,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                               .add(GetFormFieldsRequestEvent());
                         },
                       ),
+                //when data error
                 GetFormFieldsError() => RetryBtn(
                     errorMessage: getFormFieldsState.message,
                     onRetry: () {
@@ -147,6 +150,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                           .add(GetFormFieldsRequestEvent());
                     },
                   ),
+                // when loading
                 GetFormFieldsLoading() => Center(
                     child: CupertinoActivityIndicator(
                       color: Theme.of(context).primaryColor,
@@ -163,12 +167,15 @@ class _AddCarScreenState extends State<AddCarScreen> {
 
   String? _checkFileValidation(GetFormFieldsLoaded getFormFieldsState) {
     String? errorMsg;
+    // Check if any field type is file
     if (getFormFieldsState.formFields.fields!
         .any((element) => element.type == 'file')) {
       for (var element in getFormFieldsState.formFields.fields!
           .where((element) => element.type == 'file')) {
+        // Check if no files are selected
         if ((element.selectedFiles ?? []).isEmpty) {
           errorMsg = 'حداقل یک تصویر انتخاب نمایید';
+          // Check if any selected file exceeds the max size
         } else if (element.props?.maxSize != null &&
             element.selectedFiles!.any((item) =>
                 (int.parse(element.props!.maxSize!

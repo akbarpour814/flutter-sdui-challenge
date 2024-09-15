@@ -41,6 +41,7 @@ class _CarListScreenState extends State<CarListScreen> {
                         child: AddCarScreen(
                           onAdded: () {
                             Navigator.pop(ctx);
+                            // reload data and go top of page
                             BlocProvider.of<GetCarsBloc>(context)
                                 .add(GetCarsRequestEvent());
                             _scrollController.animateTo(
@@ -60,6 +61,7 @@ class _CarListScreenState extends State<CarListScreen> {
         body: BlocBuilder<GetCarsBloc, GetCarsState>(
           builder: (context, getCarsState) {
             return switch (getCarsState) {
+              //when data loaded
               GetCarsLoaded() => getCarsState.data.isNotEmpty
                   ? ListView(
                       controller: _scrollController,
@@ -70,6 +72,7 @@ class _CarListScreenState extends State<CarListScreen> {
                           .map((e) => CarItem(
                                 car: e,
                                 onDeleteItem: () {
+                                  // remove item from runtime ui state
                                   setState(() {
                                     getCarsState.data.removeWhere(
                                         (element) => element.id == e.id);
@@ -77,6 +80,7 @@ class _CarListScreenState extends State<CarListScreen> {
                                 },
                               ))
                           .toList())
+                  //when data is empty
                   : DataEmptyWidget(
                       onCreate: () {
                         Navigator.push(
@@ -100,6 +104,7 @@ class _CarListScreenState extends State<CarListScreen> {
                             ));
                       },
                     ),
+              //when data error
               GetCarsError() => RetryBtn(
                   errorMessage: 'خطا در دریافت اطلاعات',
                   onRetry: () {
@@ -107,6 +112,7 @@ class _CarListScreenState extends State<CarListScreen> {
                         .add(GetCarsRequestEvent());
                   },
                 ),
+              //when data loading
               GetCarsLoading() => Center(
                   child: CupertinoActivityIndicator(
                     color: Theme.of(context).primaryColor,

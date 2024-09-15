@@ -57,6 +57,7 @@ class _ImagePickerGeneratorState extends State<ImagePickerGenerator> {
                   }
                 }
                 setState(() {});
+                // go bottom of page after a .5s delay
                 Future.delayed(const Duration(milliseconds: 500)).then(
                     (value) => widget.scrollController.animateTo(
                         widget.scrollController.position.maxScrollExtent,
@@ -74,6 +75,7 @@ class _ImagePickerGeneratorState extends State<ImagePickerGenerator> {
                 style: TextStyle(color: Theme.of(context).primaryColor),
               )),
         ),
+        //show picked images
         if ((widget.item.selectedFiles ?? []).isNotEmpty)
           AnimatedExpandedWidget(
               expand: true,

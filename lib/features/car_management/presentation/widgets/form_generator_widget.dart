@@ -44,7 +44,6 @@ class _FormGeneratorWidgetState extends State<FormGeneratorWidget> {
                           scrollController: _scrollController,
                         ),
                       String() => Center(),
-                      // TODO: Handle this case.
                       null => Center(),
                     })
                 .toList()));

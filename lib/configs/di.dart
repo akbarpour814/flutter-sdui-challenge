@@ -20,9 +20,9 @@ Future<void> configureDependencies() async {
   );
   getIt.init();
   await initializeHive();
-  Hive.registerAdapter(CarAttributeModelAdapter());
 }
 
+//configure dio api client instance
 Dio createApiClient() {
   Dio dio = Dio(BaseOptions(
       baseUrl: 'https://github.com/',
@@ -67,10 +67,11 @@ Dio createApiClient() {
   return dio;
 }
 
+//initilize hive db
 Future<void> initializeHive() async {
   await Hive.initFlutter();
-  // if (!Hive.isAdapterRegistered(RateSongModelAdapter().typeId)) {
-  //   Hive.registerAdapter(RateSongModelAdapter());
-  // }
-  // Hive.deleteBoxFromDisk(hiveDBNameUpdate);
+  //check if adapter already registerd
+  if (!Hive.isAdapterRegistered(CarAttributeModelAdapter().typeId)) {
+    Hive.registerAdapter(CarAttributeModelAdapter());
+  }
 }
