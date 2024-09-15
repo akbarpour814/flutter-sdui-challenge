@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:hive/hive.dart';
 part 'car_attribute_model.g.dart';
@@ -10,8 +10,10 @@ class CarAttributeModel {
   @HiveField(1)
   final String? attrValue;
   @HiveField(2)
-  final List<File>? images;
+  List<Uint8List>? fileBytes;
 
   CarAttributeModel(
-      {required this.attrName, required this.attrValue, required this.images});
+      {required this.attrName,
+      required this.attrValue,
+      required this.fileBytes,});
 }

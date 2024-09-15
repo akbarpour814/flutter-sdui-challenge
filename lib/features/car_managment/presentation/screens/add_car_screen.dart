@@ -54,6 +54,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                           BlocConsumer<AddNewCarBloc, AddNewCarState>(
                             listener: (context, addNewCarState) {
                               if (addNewCarState is AddNewCarSuccess) {
+                                Navigator.pop(context);
                                 widget.onAdded();
                               }
                               if (addNewCarState is AddNewCarError) {
@@ -90,16 +91,18 @@ class _AddCarScreenState extends State<AddCarScreen> {
                                                           ?.value ??
                                                       element.controller.text
                                                           .trim(),
-                                                  images: element.selectedFiles
-                                                      ?.map(
-                                                        (e) => File(e.path),
-                                                      )
-                                                      .toList()));
-                                              BlocProvider.of<AddNewCarBloc>(
-                                                      context)
-                                                  .add(AddNewCarRequestEvent(
-                                                      request: requestList));
+                                                  fileBytes:
+                                                      element.selectedFiles
+                                                          ?.map(
+                                                            (e) => File(e.path)
+                                                                .readAsBytesSync(),
+                                                          )
+                                                          .toList()));
                                             }
+                                            BlocProvider.of<AddNewCarBloc>(
+                                                    context)
+                                                .add(AddNewCarRequestEvent(
+                                                    request: requestList));
                                           } else {
                                             CustomModal.showInfo(
                                                 context, fileErrorMsg);

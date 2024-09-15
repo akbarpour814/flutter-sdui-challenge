@@ -19,7 +19,7 @@ class CarAttributeModelAdapter extends TypeAdapter<CarAttributeModel> {
     return CarAttributeModel(
       attrName: fields[0] as String?,
       attrValue: fields[1] as String?,
-      images: (fields[2] as List?)?.cast<File>(),
+      fileBytes: (fields[2] as List?)?.cast<Uint8List>(),
     );
   }
 
@@ -32,7 +32,7 @@ class CarAttributeModelAdapter extends TypeAdapter<CarAttributeModel> {
       ..writeByte(1)
       ..write(obj.attrValue)
       ..writeByte(2)
-      ..write(obj.images);
+      ..write(obj.fileBytes);
   }
 
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sdui_challenge/features/car_managment/presentation/blocs/bloc/get_cars_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/blocs/delete_car/delete_car_bloc.dart';
-import 'package:flutter_sdui_challenge/features/car_managment/presentation/blocs/get_cars/get_cars_bloc.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/screens/add_car_screen.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/data_empty_widget.dart';
 import 'package:flutter_sdui_challenge/features/car_managment/presentation/widgets/retry_btn.dart';
@@ -30,35 +30,36 @@ class _CarListScreenState extends State<CarListScreen> {
         appBar: AppBar(
           title: const Text('لیست خودرو های شما'),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: AddCarScreen(
-                        onAdded: () {
-                          Navigator.pop(context);
-                          BlocProvider.of<GetCarsBloc>(context)
-                              .add(GetCarsRequestEvent());
-                        },
-                      )),
-                ));
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
+        floatingActionButton: Builder(builder: (context) {
+          return FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: AddCarScreen(
+                          onAdded: () {
+                            BlocProvider.of<GetCarsBloc>(context)
+                                .add(GetCarsRequestEvent());
+                          },
+                        )),
+                  ));
+            },
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          );
+        }),
         body: BlocBuilder<GetCarsBloc, GetCarsState>(
           builder: (context, getCarsState) {
             return switch (getCarsState) {
               GetCarsLoaded() => getCarsState.data.isNotEmpty
                   ? Column(
                       children: getCarsState.data
-                          .map((e) => Text(e.first.attrName!))
+                          .map((e) => Text(e.first.attrValue!))
                           .toList())
                   : DataEmptyWidget(
                       onCreate: () {
