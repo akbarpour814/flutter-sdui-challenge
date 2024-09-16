@@ -37,7 +37,8 @@ dev_dependencies:
   mockito:
   test_widgets_with_size:
   bloc_test:
-
+  responsive_sizer:
+  
 flutter_gen:
   output: lib/configs/gen
   integrations:

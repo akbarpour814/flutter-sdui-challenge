@@ -1,7 +1,10 @@
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'dart:io';
+
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -30,6 +33,8 @@ void disableOverflowErrors() {
   ICarManagementRemoteDataSource,
   ICarManagementRepository,
   Box,
-  HiveInterface
+  HiveInterface,
+  ImagePicker,
+  File
 ])
 void main() {}
