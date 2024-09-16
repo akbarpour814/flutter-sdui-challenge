@@ -7,8 +7,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/models/car_attribute_model.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/models/get_cars_response_model.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/source/local/car_management_local_data_source.dart';
-
-// 📦 Package imports:
 import 'package:path/path.dart' as path;
 
 final _random = Random();

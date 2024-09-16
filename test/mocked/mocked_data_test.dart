@@ -35,6 +35,6 @@ void disableOverflowErrors() {
   Box,
   HiveInterface,
   ImagePicker,
-  File,
+  File
 ])
 void main() {}

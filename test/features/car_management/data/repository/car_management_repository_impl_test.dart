@@ -1,7 +1,6 @@
 import 'package:flutter_sdui_challenge/configs/di.dart';
 import 'package:flutter_sdui_challenge/features/car_management/data/repository/car_management_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sdui_challenge/core/utils/data_states.dart';
@@ -12,8 +11,6 @@ import 'package:flutter_sdui_challenge/features/car_management/data/source/remot
 
 import '../../../../mocked/mocked_data_test.mocks.dart';
 
-// Generate the mocks for the required data sources
-@GenerateMocks([ICarManagementRemoteDataSource, ICarManagementLocalDataSource])
 void main() {
   late CarManagementRepositoryImpl repository;
   late ICarManagementRemoteDataSource mockRemoteDataSource;
