@@ -1,6 +1,7 @@
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:hive/hive.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -27,6 +28,8 @@ void disableOverflowErrors() {
   Dio,
   ICarManagementLocalDataSource,
   ICarManagementRemoteDataSource,
-  ICarManagementRepository
+  ICarManagementRepository,
+  Box,
+  HiveInterface
 ])
 void main() {}
